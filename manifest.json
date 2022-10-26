@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "TT Rockstars Extension",
+    "version": "1.0",
+    "description": "Automatically does the times tables",
+
+    "icons": {
+        "48": "48.png"
+    },
+
+    "action": {
+        "default_icon": {
+            "48": "48.png"
+        },
+        "default_popup": "popup.html"
+    },
+
+    "host_permissions": [
+        "https://play.ttrockstars.com/*"
+    ],
+
+    "permissions": [
+        "tabs"
+    ],
+
+    "content_scripts": [
+        {
+          "matches": ["https://play.ttrockstars.com/*"],
+          "js": ["contentScript.js"]
+        }
+    ]
+}
