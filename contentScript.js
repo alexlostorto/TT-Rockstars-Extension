@@ -1,11 +1,23 @@
 console.log("Working");
 
 let execute = "Stop";
-let runner = setInterval(main, randomIntFromInterval(200,300));
+let min = 0;
+let max = 0;
+let runner = '';
 
 chrome.runtime.onMessage.addListener(
-  function(request) {
-    if (!request.message === "Start") {return}
+    function(request) {
+        if (!request.message === "Start") {return}
+
+    try {
+        clearInterval(runner);
+    } catch(err) {}
+
+    min = request.min;
+    max = request.max;
+
+    console.log(min);
+    console.log(max);
 
     if (execute == 'Stop') {
         execute = 'Start';
@@ -14,6 +26,8 @@ chrome.runtime.onMessage.addListener(
     }
 
     console.log(execute);
+
+    runner = setInterval(main, randomIntFromInterval(min,max));
 });
 
 const observer = new MutationObserver(function() {
